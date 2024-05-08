@@ -4,34 +4,42 @@ const int MAX_HEAP_SIZE = 10;
 
 class Heap {
 private:
-  PrintJob* arr[MAX_HEAP_SIZE];      // Notice this is an array of PrintJob pointers
-  int numItems;  //current number of items in heap
+    PrintJob* arr[MAX_HEAP_SIZE];      // Notice this is an array of PrintJob pointers
+    int numItems;  //current number of items in heap
+    /*This function is called by dequeue function
+    to move the new root down the heap to the 
+    appropriare location.*/
+    void trickleDown(int rootIndex);
+    //used for enqueue function
+    void trickleUp(int newJobIndex);
 
 public:
-  /*Initializes an empty heap.*/
-  Heap();
+    //Constructor & Rule of 3
+    Heap(){
+        numItems = 0;
+    }
+    ~Heap(){
+        delete[] arr;
+        numItems = 0;
+    }
+    Heap(const Heap&) = delete;
+    Heap& operator=(const Heap&) = delete;
 
-  /*Inserts a PrintJob to the heap without
-  violating max-heap properties.*/
-  void enqueue ( PrintJob* );
+    /*Inserts a PrintJob to the heap without
+    violating max-heap properties.*/
+    void enqueue (PrintJob* newJob);
 
-  /*Removes the node with highest priority from the heap. 
-  Follow the algorithm on priority-queue slides. */
-  void dequeue ( );
+    /*Removes the node with highest priority from the heap. 
+    Follow the algorithm on priority-queue slides. */
+    void dequeue ();
 
-  /*Returns the node with highest priority.*/
-  PrintJob* highest ( );
+    /*Returns the node with highest priority.*/
+    PrintJob* highest () const;
 
-  /*Prints the PrintJob with highest priority in the following format:
-  Priority: priority, Job Number: jobNum, Number of Pages: numPages
-  (Add a new line at the end.)*/
-  void print ( );
+    /*Prints the PrintJob with highest priority in the following format:
+    Priority: priority, Job Number: jobNum, Number of Pages: numPages
+    (Add a new line at the end.)*/
+    void print () const;
 
-private:
-  /*This function is called by dequeue function
-  to move the new root down the heap to the 
-  appropriare location.*/
-  void trickleDown(int);
-
-  //You can include additional private helper functions here
+    //You can include additional private helper functions here
 };
