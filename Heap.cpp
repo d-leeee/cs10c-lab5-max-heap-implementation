@@ -6,18 +6,21 @@ using namespace std;
 /*Inserts a PrintJob to the heap without
 violating max-heap properties.*/
 void Heap::enqueue(PrintJob* newJob){
+    //return if full heap
     if (numItems == MAX_HEAP_SIZE){
         return;
     }
+    //add new job to end of the heap
     arr[numItems] = newJob;
     trickleUp(numItems);
     numItems++;
 }
 
+//percolate up 
 void Heap::trickleUp(int newJobIndex){
     while (newJobIndex > 0){
         int parentIndex = (newJobIndex - 1) / 2;
-        if (arr[newJobIndex] <= arr[parentIndex]){
+        if (arr[newJobIndex]->getPriority() <= arr[parentIndex]->getPriority()){
             return;
         }
         else {
@@ -32,18 +35,27 @@ void Heap::trickleUp(int newJobIndex){
 /*Removes the node with highest priority from the heap. 
 Follow the algorithm on priority-queue slides. */
 void Heap::dequeue(){
+    //return if empty heap
+    if (numItems == 0){
+        return;
+    }
+    //deallocate and percolate down
+    delete arr[0];
+    arr[0] = arr[numItems - 1]; // replace root with last job
+    numItems--;
     trickleDown(0);
 }
 
+//percolate down
 void Heap::trickleDown(int rootIndex){
     int childIndex = 2 * rootIndex + 1;
     PrintJob* value = arr[rootIndex];
 
-    while (childIndex < MAX_HEAP_SIZE){
+    while (childIndex < numItems){
         PrintJob* maxValue = value;
         int maxIndex = -1;
         for (int i = 0; i < 2 && i + childIndex < MAX_HEAP_SIZE; i++){
-            if (arr[i + childIndex] > maxValue){
+            if (arr[i + childIndex]->getPriority() > maxValue->getPriority()){
                 maxValue = arr[i + childIndex];
                 maxIndex = i + childIndex;
             }
@@ -60,8 +72,13 @@ void Heap::trickleDown(int rootIndex){
         }
     }
 }
+
 /*Returns the node with highest priority.*/
 PrintJob* Heap::highest() const{
+    //return nullptr if heap is empty
+    if (numItems == 0){
+        return nullptr;
+    }
     return arr[0];
 }
 
@@ -69,5 +86,9 @@ PrintJob* Heap::highest() const{
 Priority: priority, Job Number: jobNum, Number of Pages: numPages
 (Add a new line at the end.)*/
 void Heap::print() const{
+    //return if heap is empty
+    if (numItems == 0){
+        return;
+    }
     arr[0]->getJobDescription();
 }
