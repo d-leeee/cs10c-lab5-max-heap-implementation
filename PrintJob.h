@@ -5,9 +5,13 @@ private:
   int numPages;
 
 public:
-  PrintJob ( int, int, int);
-  int getPriority ( );
-  int getJobNumber ( );
-  int getPages ( );
-  //You can add additional functions here
+  PrintJob (int setP, int setJ, int numP){
+    priority = setP;
+    jobNumber = setJ;
+    numPages = numP;
+  }
+  int getPriority() const;
+  int getJobNumber() const;
+  int getPages() const;
+  void getJobDescription() const; //prints the job priority, number, and pages
 };

@@ -69,6 +69,5 @@ PrintJob* Heap::highest() const{
 Priority: priority, Job Number: jobNum, Number of Pages: numPages
 (Add a new line at the end.)*/
 void Heap::print() const{
-    cout << "Priority: " << arr[0]->getPriority() << ", Job Number: " << arr[0]->getJobNumber()
-    << ", Number of Pages: " << arr[0]->getPages() << endl;
+    arr[0]->getJobDescription();
 }

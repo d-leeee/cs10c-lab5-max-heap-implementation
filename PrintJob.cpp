@@ -1,14 +1,21 @@
 #include "PrintJob.h"
+#include <iostream>
 
-PrintJob::PrintJob ( int setP, int setJ, int numP ):priority(setP), jobNumber(setJ), numPages(numP){}
-int PrintJob::getPriority ( ){
+using namespace std;
+
+int PrintJob::getPriority() const{
     return priority;
 }
 
-int PrintJob::getJobNumber ( ){
+int PrintJob::getJobNumber() const{
     return jobNumber;
 }
 
-int PrintJob::getPages ( ){
+int PrintJob::getPages() const{
     return numPages;
+}
+
+void PrintJob::getJobDescription() const{
+    cout << "Priority: " << priority << ", Job Number: " << jobNumber
+    << ", Number of Pages: " << numPages << endl;
 }
