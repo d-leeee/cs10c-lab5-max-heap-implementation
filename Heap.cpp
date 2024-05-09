@@ -7,8 +7,8 @@ using namespace std;
 violating max-heap properties.*/
 void Heap::enqueue(PrintJob* newJob){
     //return if full heap
-    if (numItems == MAX_HEAP_SIZE){
-        return;
+    if (full()){
+        throw runtime_error("Heap is full.");
     }
     //add new job to end of the heap
     arr[numItems] = newJob;
@@ -36,8 +36,8 @@ void Heap::trickleUp(int newJobIndex){
 Follow the algorithm on priority-queue slides. */
 void Heap::dequeue(){
     //return if empty heap
-    if (numItems == 0){
-        return;
+    if (empty()){
+        throw runtime_error("Heap is empty.");
     }
     //deallocate and percolate down
     delete arr[0];
@@ -76,8 +76,8 @@ void Heap::trickleDown(int rootIndex){
 /*Returns the node with highest priority.*/
 PrintJob* Heap::highest() const{
     //return nullptr if heap is empty
-    if (numItems == 0){
-        return nullptr;
+    if (empty()){
+        throw runtime_error("Heap is empty.");
     }
     return arr[0];
 }
@@ -87,8 +87,8 @@ Priority: priority, Job Number: jobNum, Number of Pages: numPages
 (Add a new line at the end.)*/
 void Heap::print() const{
     //return if heap is empty
-    if (numItems == 0){
-        return;
+    if (empty()){
+        throw runtime_error("Heap is empty.");
     }
     arr[0]->getJobDescription();
 }

@@ -8,7 +8,8 @@ class Heap {
         int numItems;  //current number of items in heap
         void trickleDown(int rootIndex); //percolate down
         void trickleUp(int newJobIndex); //percolate up
-
+        bool empty() const { return numItems == 0; }
+        bool full() const { return numItems == MAX_HEAP_SIZE; }
     public:
         //Constructor & Rule of 3
         Heap(){
