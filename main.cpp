@@ -19,9 +19,9 @@ int menu() {
   cin.clear();
   cin.ignore(256, '\n');
   return choice;
-}
+  }
 
-int main(){
+  int main(){
     Heap max_heap;
 
     int choice = menu();
