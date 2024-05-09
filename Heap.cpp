@@ -74,7 +74,7 @@ void Heap::trickleDown(int rootIndex){
 }
 
 /*Returns the node with highest priority.*/
-PrintJob* Heap::highest() const{
+const PrintJob* Heap::highest() const{
     //return nullptr if heap is empty
     if (empty()){
         throw runtime_error("Heap is empty.");

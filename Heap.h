@@ -34,7 +34,7 @@ class Heap {
         void dequeue();
 
         /*Returns the node with highest priority.*/
-        PrintJob* highest() const;
+        const PrintJob* highest() const;
 
         /*Prints the PrintJob with highest priority in the following format:
         Priority: priority, Job Number: jobNum, Number of Pages: numPages
